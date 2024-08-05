@@ -1,0 +1,3 @@
+[submodule "dot_config/zsh"]
+	path = dot_config/zsh
+	url = https://github.com/matru/zdotdir/
