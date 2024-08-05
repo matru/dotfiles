@@ -1,0 +1,145 @@
+{
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.9.3",
+  "schemes" : [
+    {
+      "if" : {
+        "device" : {
+          "productName" : "Apple Internal Keyboard \/ Trackpad",
+          "productID" : "0x343",
+          "category" : "trackpad",
+          "vendorID" : "0x5ac"
+        }
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        }
+      }
+    },
+    {
+      "pointer" : {
+        "acceleration" : 0,
+        "speed" : 0.2
+      },
+      "if" : {
+        "device" : {
+          "productName" : "Xtrfy MZ1",
+          "productID" : "0x2203",
+          "category" : "mouse",
+          "vendorID" : "0x2ea8"
+        }
+      },
+      "scrolling" : {
+        "speed" : 0,
+        "acceleration" : 1,
+        "reverse" : true,
+        "distance" : 3
+      }
+    },
+    {
+      "pointer" : {
+        "acceleration" : 0,
+        "speed" : 0.2,
+        "disableAcceleration" : false
+      },
+      "if" : {
+        "device" : {
+          "productName" : "MM720 Gaming Mouse",
+          "productID" : "0x141",
+          "category" : "mouse",
+          "vendorID" : "0x2516"
+        }
+      },
+      "scrolling" : {
+        "speed" : 0,
+        "acceleration" : 1,
+        "reverse" : true,
+        "distance" : 3
+      }
+    },
+    {
+      "buttons" : {
+        "clickDebouncing" : {
+          "timeout" : 0
+        }
+      },
+      "if" : {
+        "device" : {
+          "productName" : "USB Receiver",
+          "productID" : "0xc53f",
+          "category" : "mouse",
+          "vendorID" : "0x46d"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 0,
+        "speed" : 0.27
+      },
+      "scrolling" : {
+        "speed" : 0,
+        "acceleration" : {
+          "horizontal" : 0,
+          "vertical" : 1
+        },
+        "reverse" : false,
+        "distance" : {
+          "vertical" : 5
+        }
+      }
+    },
+    {
+      "pointer" : {
+        "acceleration" : 0,
+        "speed" : 0.27
+      },
+      "if" : {
+        "device" : {
+          "productName" : "USB Receiver",
+          "productID" : "0xc547",
+          "category" : "mouse",
+          "vendorID" : "0x46d"
+        }
+      },
+      "scrolling" : {
+        "speed" : {
+          "vertical" : 0
+        },
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "reverse" : {
+          "vertical" : true
+        },
+        "distance" : {
+          "vertical" : 5
+        }
+      }
+    },
+    {
+      "pointer" : {
+        "acceleration" : 0,
+        "speed" : 0.27
+      },
+      "if" : {
+        "device" : {
+          "productName" : "Aria XD7",
+          "productID" : "0xfa6c",
+          "category" : "mouse",
+          "vendorID" : "0x25a7"
+        }
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "horizontal" : 0,
+          "vertical" : 1
+        },
+        "distance" : {
+          "vertical" : 5
+        },
+        "speed" : {
+          "vertical" : 0
+        }
+      }
+    }
+  ]
+}
