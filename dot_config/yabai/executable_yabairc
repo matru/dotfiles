@@ -1,0 +1,80 @@
+# space names:
+
+yabai -m space 1 --label 1
+yabai -m space 2 --label 2
+yabai -m space 3 --label 3
+yabai -m space 4 --label 4
+yabai -m space 5 --label 5
+yabai -m space 6 --label 6
+yabai -m space 7 --label 7
+yabai -m space 8 --label chats
+yabai -m space 9 --label 9
+yabai -m space 10 --label mails
+yabai -m space 11 --label 11
+yabai -m space 12 --label 12
+yabai -m space 13 --label 13
+yabai -m space 14 --label 14
+yabai -m space 15 --label 15
+yabai -m space 16 --label 16
+
+yabai -m rule --add app="^Signal$" space=chats
+yabai -m rule --add app="^Discord$" space=chats
+yabai -m rule --add app="^WhatsApp$" space=chats
+yabai -m rule --add app="^Rakuten Viber$" space=chats
+yabai -m rule --add app="^Telegram$" space=chats
+yabai -m rule --add app="^Skype$" space=chats
+
+yabai -m rule --apply
+
+# bsp or float (default: float)
+yabai -m config layout bsp
+
+# Rules for management:
+
+yabai -m rule --add app="^BetterTouchTool$" manage=off
+
+# New window spawns to the right if vertical split, or bottom if 
+horizontal split
+yabai -m config window_placement second_child
+
+# Set all padding and gaps to 20pt (default: 0)
+yabai -m config top_padding    7
+yabai -m config bottom_padding 7
+yabai -m config left_padding   7
+yabai -m config right_padding  7
+yabai -m config window_gap     7
+
+# set mouse interaction modifier key (default: fn)
+yabai -m config mouse_modifier fn
+
+# set modifier + left-click drag to move window (default: move)
+yabai -m config mouse_action1 move
+
+# set modifier + right-click drag to resize window (default: resize)
+yabai -m config mouse_action2 resize
+
+# yabai mouse things
+# disable specific apps
+
+# float system preferences (list windows command: yabai -m query --windows)
+yabai -m rule --add app="^System Preferences$" manage=off
+
+# show digital colour meter topmost and on all spaces
+#yabai -m rule --add app="^Digital Colou?r Meter$" sticky=on
+# different layouts
+
+# vidi tabbed layouts dali ima tuka
+#https://github.com/koekeishiya/yabai/issues/203
+#https://github.com/koekeishiya/yabai/issues/304
+
+# signal to automatically focus cursor when closed
+yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
+yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
+
+# desktop specific layout, i reseet na current layout po standard ili pak site reeset po standard
+
+# this needs to be at the very end of the file?
+
+yabai -m rule --add app="^Spotify$" scratchpad=spotify grid=11:11:1:1:9:9
+
+borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0 hidpi=on &

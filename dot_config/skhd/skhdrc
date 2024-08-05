@@ -1,0 +1,177 @@
+# changing window focus
+
+# within space
+
+#alt - j : yabai -m window --focus south
+#alt - k : yabai -m window --focus north
+#alt - h : yabai -m window --focus west
+#alt - l : yabai -m window --focus east
+
+#alt - k : yabai -m query --spaces --space \
+#  | jq -re ".index" \
+#  | xargs -I{} yabai -m query --windows --space {} \
+#  | jq -sre 'add | map(select(."is-minimized"==false)) | sort_by(.display, .frame.y, .frame.x, .id) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $has_index > 0 then nth($has_index - 1).id else nth($array_length - 1).id end' \
+#  | xargs -I{} yabai -m window --focus {}
+
+#alt - j : yabai -m query --spaces --space \
+#  | jq -re ".index" \
+#  | xargs -I{} yabai -m query --windows --space {} \
+#  | jq -sre 'add | map(select(."is-minimized"==false)) | sort_by(.display, .frame.y, .frame.x, .id) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $array_length - 1 > $has_index then nth($has_index + 1).id else nth(0).id end' \
+#  | xargs -I{} yabai -m window --focus {}
+
+alt - h : [[ $(yabai -m query --spaces --space | jq -re '.type') = "bsp" ]]\
+          && yabai -m window --focus west\
+          || yabai -m window --focus stack.prev
+alt - j : [[ $(yabai -m query --spaces --space | jq -re '.type') = "bsp" ]]\
+          && yabai -m window --focus south\
+          || yabai -m window --focus stack.prev
+alt - k : [[ $(yabai -m query --spaces --space | jq -re '.type') = "bsp" ]]\
+          && yabai -m window --focus north\
+          || yabai -m window --focus stack.next
+alt - l : [[ $(yabai -m query --spaces --space | jq -re '.type') = "bsp" ]]\
+          && yabai -m window --focus east\
+          || yabai -m window --focus stack.next
+
+# external display
+
+#cmd + h : yabai -m display --focus west
+#cmd +  l : yabai -m display --focus east
+
+# modify the layout
+
+# rotate layout clockwise
+
+cmd + alt - r : yabai -m space --rotate 270
+
+# flip along y-axis
+
+cmd + alt - u : yabai -m space --mirror y-axis
+
+# flip along x-axis
+cmd + alt - i : yabai -m space --mirror x-axis
+
+# toggle window float
+
+cmd + alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+# modifying window size
+
+# maximize a window
+cmd + alt - p : yabai -m window --toggle zoom-fullscreen
+
+# balance windows
+
+cmd + alt - z : yabai -m space --balance
+
+# moving windows
+
+# swap and move to a side
+cmd + alt - j : yabai -m window --swap south 
+cmd + alt - k : yabai -m window --swap north
+cmd + alt - h : yabai -m window --swap west
+cmd + alt - l : yabai -m window --swap east
+
+# move to a side and split it (was cmd shift hjkl)
+alt + shift - j : yabai -m window --warp south
+alt + shift - k : yabai -m window --warp north
+alt + shift - h : yabai -m window --warp west
+alt + shift - l : yabai -m window --warp east
+
+# move window to external dispalys
+#cmd + shift - h : yabai -m window --display west; yabai -m display --focus west;
+#cmd + shift - l : yabai -m window --display east; yabai -m display --focus east;
+# throw window to another space
+cmd + shift - 1 : yabai -m window --space 1
+cmd + shift - 2 : yabai -m window --space 2
+cmd + shift - 3 : yabai -m window --space 3
+cmd + shift - 4 : yabai -m window --space 4
+cmd + shift - 5 : yabai -m window --space 5
+cmd + shift - 6 : yabai -m window --space 6
+cmd + shift - 7 : yabai -m window --space 7
+cmd + shift - 8 : yabai -m window --space 8
+cmd + shift - 9 : yabai -m window --space 9
+cmd + shift - 0 : yabai -m window --space 10
+#cmd + shift - - : yabai -m window --space 11
+#cmd + shift - = : yabai -m window --space 12
+
+# control center opening
+
+# start/stop/restart yabai
+cmd + shift - q : yabai --stop-service
+cmd + shift - s : yabai --start-service
+cmd + shift - r : yabai --restart-service
+
+# install
+# stavi full screen mode shortcut i nekako targetir go toj windows dali so next left and right ako ne e staveno
+#alt + shift - y : yabai -m window --resize left:-20:0 ; yabai -m window --resize right:-20:0
+#alt + shift - u : yabai -m window --resize bottom:0:20 ; yabai -m window --resize top:0:20
+#alt + shift - i : yabai -m window --resize top:0:-20 ; yabai -m window --resize bottom:0:-20
+#alt + shift - o : yabai -m window --resize right:20:0 ; yabai -m window --resize left:20:0
+
+alt + shift - u : yabai -m window west --resize right:-20:0 ; yabai -m window --resize right:-20:0
+alt + shift - i : yabai -m window north --resize bottom:0:20 ; yabai -m window --resize bottom:0:20
+alt + shift - o : yabai -m window south --resize top:0:-20 ; yabai -m window --resize top:0:-20
+alt + shift - p : yabai -m window east --resize left:20:0 ; yabai -m window --resize left:20:0
+
+# 2 > /dev/null || izmegju dvete
+# &> /dev/null
+
+# toggle padding on the current space
+#yabai -m space --toggle padding
+# toggle whether the focused window should be shown on all spaces
+#yabai -m window --toggle sticky
+
+# toggle whether the focused window should have a border
+#yabai -m window --toggle border
+
+# toggle whether the focused window should be shown on all spaces
+#yabai -m window --toggle sticky
+
+# show digital colour meter topmost and on all spaces
+# different layouts
+
+# vidi tabbed layouts dali ima tuka
+#https://github.com/koekeishiya/yabai/issues/203
+#https://github.com/koekeishiya/yabai/issues/304
+
+# toggle stacked layout
+
+alt + shift - e : yabai -m config layout stack
+alt + shift - d : yabai -m config layout bsp
+
+#alt + cmd - n: yabai -m window --focus stack.prev
+#alt + cmd - m: yabai -m window --focus stack.next
+# yabai -m window --focus stack.first
+# yabai -m window --focus stack.last
+# yabai -m window --focus stack.recent
+
+# stack target_window_sel onto source_window_sel
+#yabai -m window [<source_window_sel>] --stack <target_window_sel>
+
+# next window is inserted onto source_window_sel
+#cmd + shift -a : yabai -m window [<source_window_sel>] --insert stack
+
+# focus the prev window in a stack
+#yabai -m window --focus stack.prev
+
+# focus the next window in a stack
+#yabai -m window --focus stack.next
+
+# focus the first window in a stack
+#yabai -m window --focus stack.first
+
+# focus the last window in a stack
+#yabai -m window --focus stack.last
+
+# focus the most recently focused window in a stack
+#yabai -m window --focus stack.recent
+
+# activate stack on current window
+cmd + alt - s : yabai -m window --insert stack
+
+# show all scratchpad windows if inaccessible due to yabai restart or crash
+cmd + alt - z : yabai -m window --scratchpad recover
+
+# toggle scratchpad windows or launch application if not running
+alt + shift - q : yabai -m window --toggle spotify || open  -a Spotify
+alt + shift - w : yabai -m window --toggle iterm || open  -a iTerm
