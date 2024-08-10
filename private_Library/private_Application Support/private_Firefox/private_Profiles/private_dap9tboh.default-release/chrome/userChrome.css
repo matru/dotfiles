@@ -1,0 +1,78 @@
+/* Example userChrome.css file */
+
+/* Import your desired components first */
+
+/* # my addons: */
+
+@import url(chrome/autohide_bookmarks_toolbar.css);
+@import url(chrome/autohide_sidebar.css);
+@import url(chrome/bookmark_panel_enlarge.css);
+@import url(chrome/compact_proton.css);
+@import url(chrome/compact_urlbar_megabar.css);
+@import url(chrome/minimal_in-UI_scrollbars.css);
+@import url(chrome/more_visible_tab_icon.css);
+@import url(chrome/privatemode_indicator_as_menu_button.css);
+@import url(chrome/proton_dark_light_notifications.css);
+@import url(chrome/tab_count_in_alltabs_button.css);
+@import url(chrome/hide_tabs_toolbar_osx.css);
+@import url(chrome/window_control_placeholder_support.css);
+@import url(chrome/urlbar_connection_type_text_colors.css);
+@import url(chrome/overlay_sidebar_header.css);
+
+/* @import url(chrome/toggle_tabs_toolbar_with_alt.css); */
+/* @import url(chrome/navigation_buttons_inside_urlbar.css); */
+/* @import url(chrome/autohide_navigation_button.css); */
+/* @import url(chrome/reload_button_in_urlbar.css); */
+/* @import url(chrome/multi-row_bookmarks.css); */
+/* @import url(chrome/minimal_toolbarbuttons_v3.css); */
+
+/* template suggested: */
+
+@import url(chrome/button_effect_scale_onclick.css);
+@import url(chrome/dark_additional_windows.css);
+@import url(chrome/dark_checkboxes_and_radios.css);
+@import url(chrome/dark_context_menus.css);
+@import url(chrome/hide_toolbox_top_bottom_borders.css);
+@import url(chrome/minimal_popup_scrollbars.css);
+@import url(chrome/tab_close_button_always_on_hover.css);
+@import url(chrome/tab_loading_progress_throbber.css);
+
+/* @import url(chrome/minimal_toolbarbuttons.css); */
+/* @import url(chrome/urlbar_centered_text.css); */
+/* @import url(chrome/button_effect_icon_glow.css); */
+/* @import url(chrome/vertical_context_navigation.css); */
+/* @import url(chrome/blank_page_background.css); */
+/* @import url(chrome/autohide_menubar.css); */
+/* @import url(chrome/minimal_text_fields.css); */ /* This one hides the bookmark stuff on hover */
+
+/* Apply your custom modifications after imports */
+
+:root{
+  --toolbar-bgcolor: rgb(36,44,59) !important;
+  --uc-menu-bkgnd: var(--toolbar-bgcolor);
+  --arrowpanel-background: var(--toolbar-bgcolor) !important;
+  --autocomplete-popup-background: var(--toolbar-bgcolor) !important;
+  --uc-menu-disabled: rgb(90,90,90) !important;
+  --lwt-toolbar-field-focus: rgb(36,44,59) !important;
+  /* auto hide tabs config */
+  #sidebar-box{
+    --uc-sidebar-width: 40px;
+    --uc-sidebar-hover-width: 500px;
+    --uc-autohide-sidebar-delay: 200ms; /* Wait 0.6s before hiding sidebar */
+  }
+  /* Add the option to toggle the sidebar autohide */
+  #sidebar-box[hidden]{
+    display: flex;
+    --uc-sidebar-width: var(--uc-sidebar-hover-width);
+  }
+  /* adjust bookmark autohide config */
+  #PersonalToolbar{
+    --uc-bm-height: 20px; /* Might need to adjust if the toolbar has other buttons */
+    --uc-bm-padding: 4px; /* Vertical padding to be applied to bookmarks */
+    --uc-autohide-toolbar-delay: 1500ms; /* The toolbar is hidden after 0.6s */
+  }
+  
+}
+
+#sidebar-box{ --sidebar-background-color: var(--toolbar-bgcolor) !important; }
+window.sidebar-panel{ --lwt-sidebar-background-color: rgb(36,44,59) !important; }
